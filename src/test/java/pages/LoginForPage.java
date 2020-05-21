@@ -110,7 +110,7 @@ public class LoginForPage extends BasePage {
                     navegador.findElement(By.xpath("//div[@class=\"wrapper ng-scope\"]//section[@class=\"page search-page ng-scope\"]//button[@class=\"btn btn-default\"]//span[@class=\"fa fa-plus\"]")).click();
 
                 } else {
-                    Scanner ler = new Scanner("/home/robertinho/suhai_perfil/cotacao/nrcotacao.TXT");
+                    Scanner ler = new Scanner("/home/robertinho/suhai_perfil/cotacao/nrcotacao.txt");
                     String nome = ler.nextLine();
                     FileReader arq = new FileReader(nome);
                     BufferedReader lerArq = new BufferedReader(arq);
