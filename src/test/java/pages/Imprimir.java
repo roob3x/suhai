@@ -189,9 +189,8 @@ public class Imprimir extends BasePage {
                 try {
                     WebElement elementocotacao = navegador.findElement(By.xpath("//h1[contains( text(), 'Cotação de Seguro')]"));
                     nrcotacao = elementocotacao.getText();
-                    nrcotacao = nrcotacao.replace("Cotação de Seguro  - Nº: ", "");
+                    nrcotacao = nrcotacao.replace("Cotação de Seguro - Nº: ", "");
                     nrcotacao = nrcotacao.replace("/2020", "");
-                    System.out.println(nrcotacao);
                     FileWriter arq = new FileWriter("/home/robertinho/suhai_perfil/cotacao/nrcotacao.txt");
                     PrintWriter gravarArq = new PrintWriter(arq);
                     gravarArq.println(nrcotacao);
