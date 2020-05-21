@@ -39,7 +39,7 @@ public class suhai_perfil {
     private static File pastacotacao;
     private static File pastaimage;
 
-     //@BeforeClass
+     @BeforeClass
     public static void criarpastinha() throws IOException {
         File destpastamae = new File("/home/robertinho/suhai_perfil");
         destpastamae.mkdir();
