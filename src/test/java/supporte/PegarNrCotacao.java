@@ -5,7 +5,7 @@ import java.io.File;
 public class PegarNrCotacao {
     public static boolean VerificaCotacao(){
         boolean existenrcotacao;
-        File file = new File("/home/robertinho/suhai_perfil/cotacao/nrcotacao.TXT");
+        File file = new File("/home/robertinho/suhai_perfil/cotacao/nrcotacao.txt");
         if(file.exists() || file.isFile()){
             existenrcotacao = true;
         }
