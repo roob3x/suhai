@@ -144,6 +144,7 @@ public class Imprimir extends BasePage {
                 list = LerArquivo.getList(list);
                 nome = list.get(0);
                 numlinha = PegarNrArquivo.getList(numlinha);
+                nrlinha = numlinha.get(0);
                 File filearquivo = new File("/home/robertinho/suhai_perfil/arquivos/" + nrlinha);
                 File filetxt = new File("/home/robertinho/suhai_perfil/txt/" + nrlinha);
                 if (filetxt.exists() && filetxt.isFile()) {
@@ -160,7 +161,6 @@ public class Imprimir extends BasePage {
                     numlinha = LerArquivo.getList(numlinha);
 
                     //System.out.println(nrlinha);
-                    nrlinha = numlinha.get(0);
                     if (nrlinha.contains(nome)) {
                         //System.out.println("contem nome no nrlinha vou tentar tratar");
                         numlinha.removeAll(numlinha);
@@ -181,11 +181,12 @@ public class Imprimir extends BasePage {
         }
         return this;
     }
+
     public Imprimir PegarNrCotacao() throws IOException {
         existerro = GerenciaErro.VerificaErro();
-        if(existerro == false){
+        if (existerro == false) {
             existenrcotacao = GerenciaNrCotacao.VerificaCotacao();
-            if(existenrcotacao == false) {
+            if (existenrcotacao == false) {
                 try {
                     WebElement elementocotacao = navegador.findElement(By.xpath("//h1[contains( text(), 'Cotação de Seguro')]"));
                     nrcotacao = elementocotacao.getText();
@@ -196,8 +197,7 @@ public class Imprimir extends BasePage {
                     gravarArq.println(nrcotacao);
                     gravarArq.flush();
                     gravarArq.close();
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     criaarquivoerro = GerenciaErro.CriarArquivoErro();
                 }
             }
