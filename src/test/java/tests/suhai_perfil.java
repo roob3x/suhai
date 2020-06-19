@@ -19,6 +19,7 @@ public class suhai_perfil {
     private String nrlinha;
     private PrintWriter gravarArq;
     private File deletarerro;
+    private  String nrlinha1;
     private static List<String> numlinha = new ArrayList<String>();
     private static List<String> list = new ArrayList<String>();
     private static List<String> nmpdf = new ArrayList<String>();
@@ -96,35 +97,39 @@ public class suhai_perfil {
 
     @Test
     public void testSuhai() throws IOException, InterruptedException, FindFailed {
-        boolean verificafim = false;
-        while (verificafim == false) {
-            list = LerArquivo.getList(list);
-            numlinha = PegarNrArquivo.getList(numlinha);
-            nrlinha = numlinha.get(0);
-            System.out.println(nrlinha);
-            System.out.println(list);
+        boolean verificaFim = false;
+        PegarNrArquivo nrlinha1 = new PegarNrArquivo(navegador);
+
+        while (verificaFim == false) {
+            ArrayList<String> listaNr = nrlinha1.carregarArquivos();
+
+            nrlinha = listaNr.get(0);
+            LerArquivoObjetos arquivo = new LerArquivoObjetos(navegador);
+            List<Variaveis> listateste;
+            listateste = arquivo.lerArquivoNr(nrlinha);
+
 
             existelogar = GerenciaLogar.VerificaLogar();
             if (existelogar == true) {
                 new LoginForPage(navegador)
-                        .LogarSite();
+                        .LogarSite(listateste);
             }
             new Corpo_suhai(navegador)
                     .MetodoDadosProponente()
-                    .TipoPessoa()
-                    .PreencheNomeCpfProponente()
-                    .PreencheSexoDatNascEstCivil()
+                    .TipoPessoa(listateste)
+                    .PreencheNomeCpfProponente(listateste)
+                    .PreencheSexoDatNascEstCivil(listateste)
                     .MetodoDadosVeiculo()
-                    .AnoFabriModeloZeroKM()
-                    .MarcaModeloVeicUtiliz()
-                    .TipoSeguro()
-                    .InserirCepeComissao()
+                    .AnoFabriModeloZeroKM(listateste)
+                    .MarcaModeloVeicUtiliz(listateste)
+                    .TipoSeguro(listateste)
+                    .InserirCepeComissao(listateste)
                     .MetodoPerguntaQuestionario()
-                    .RespostaQuestionario()
+                    .RespostaQuestionario(listateste)
                     .MetodoImprimir()
                     .Calcular()
-                    .ClicaImprimir()
-                    .VerificaSeCalculou()
+                    .ClicaImprimir(listateste)
+                    .VerificaSeCalculou(listateste)
                     .PegarNrCotacao()
                     .VerificaRelogar();
 

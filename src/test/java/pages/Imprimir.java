@@ -16,8 +16,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Imprimir extends BasePage {
+public class Imprimir extends Variaveis {
     public Imprimir(WebDriver navegador) {
         super(navegador);
     }
@@ -35,16 +36,18 @@ public class Imprimir extends BasePage {
         return this;
     }
 
-    public Imprimir ClicaImprimir() throws InterruptedException, FindFailed, IOException {
+    public Imprimir ClicaImprimir(List<Variaveis>lista) throws InterruptedException, FindFailed, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
-                numlinha = PegarNrArquivo.getList(numlinha);
-                nrlinha = numlinha.get(0);
+                List<Variaveis> listavariaveis = lista;
+                PegarNrArquivo nrlinha1 = new PegarNrArquivo(navegador);
+                ArrayList<String> listaNr = nrlinha1.carregarArquivos();
+                nrlinha = listaNr.get(0);
                 //System.out.println(numlinha);
-                String nrlinha1 = nrlinha;
-                nrlinha1 = nrlinha1.replace(".txt", "");
-                nrlinha1 = nrlinha1.replace(".TXT", "");
+                String nrlinha2 = nrlinha;
+                nrlinha2 = nrlinha2.replace(".txt", ".pdf");
+                nrlinha2 = nrlinha2.replace(".TXT", ".pdf");
                 WebDriverWait wait = new WebDriverWait(navegador, 10);
                 //espera ate que o elemento de clicar para imprimir esteja visivel
                 try {
@@ -78,16 +81,7 @@ public class Imprimir extends BasePage {
                 screen.type(Key.DELETE);
                 //System.out.println(nrlinha);
                 Thread.sleep(1000);
-                /**
-                 screen.type("/home/robertinho/suhai_perfil/pdf/");
-                 Thread.sleep(1000);
-                 int y = 0;
-                 while (y <= 4) {
-                 screen.type(Key.BACKSPACE);
-                 y++;
-                 }
-                 screen.type(nrlinha1+".pdf");
-                 */
+
                 screen.type(Key.BACKSPACE);
                 Thread.sleep(500);
                 screen.type(Key.END);
@@ -100,12 +94,12 @@ public class Imprimir extends BasePage {
                 Thread.sleep(500);
 
                 //screen.type("/home/robertinho/suhai_perfil/pdf/" + nrlinha1 + ".pdf");
-                screen.type("/home/robertinho/suhai_perfil/pdf/" + nrlinha1 + ".pdf");
+                screen.type("/home/robertinho/suhai_perfil/pdf/" + nrlinha2);
 
                 Thread.sleep(1000);
                 screen.click(salvarpdf);
 //cria arquivo txt para validar se o arquivo calculou
-                FileWriter arq = new FileWriter("/home/robertinho/suhai_perfil/txt/" + nrlinha);
+                FileWriter arq = new FileWriter("/home/robertinho/suhai_perfil/txt/" +nrlinha);
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.flush();
                 gravarArq.close();
@@ -137,34 +131,37 @@ public class Imprimir extends BasePage {
         return this;
     }
 
-    public Imprimir VerificaSeCalculou() throws IOException, InterruptedException {
+    public Imprimir VerificaSeCalculou(List<Variaveis>lista) throws IOException, InterruptedException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
-                list = LerArquivo.getList(list);
-                nome = list.get(0);
-                numlinha = PegarNrArquivo.getList(numlinha);
-                nrlinha = numlinha.get(0);
+                List<Variaveis> listavariaveis = lista;
+                PegarNrArquivo nrlinha1 = new PegarNrArquivo(navegador);
+                ArrayList<String> listaNr = nrlinha1.carregarArquivos();
+                nrlinha = listaNr.get(0);
                 File filearquivo = new File("/home/robertinho/suhai_perfil/arquivos/" + nrlinha);
-                File filetxt = new File("/home/robertinho/suhai_perfil/txt/" + nrlinha);
+                File filetxt = new File("/home/robertinho/suhai_perfil/txt/" +nrlinha);
                 if (filetxt.exists() && filetxt.isFile()) {
                     //           System.out.println("arquivo processado");
                     if (filetxt.exists() && filetxt.isFile()) {
                         filearquivo.renameTo(new File("/home/robertinho/suhai_perfil/prontos/" + nrlinha));
-                        numlinha.removeAll(numlinha);
-                        list.clear();
+                        filearquivo.delete();
+                        filetxt.delete();
+                        nrlinha1.deleteArquivo(listaNr.get(0));
+                        listaNr.remove(0);
+                        lista.clear();
+                        listavariaveis.clear();
+                        ;
                     }
-                    filearquivo.delete();
-                    filetxt.delete();
-                    numlinha.indexOf(numlinha);
-                    //list = LerArquivo.getList(numlinha);
-                    numlinha = LerArquivo.getList(numlinha);
+
+
 
                     //System.out.println(nrlinha);
-                    if (nrlinha.contains(nome)) {
+/**
+                    if (numlinha.contains(getNome())) {
                         //System.out.println("contem nome no nrlinha vou tentar tratar");
                         numlinha.removeAll(numlinha);
-                        nrlinha = null;
+                        setNrlinha(null);
                         //System.out.println("entrei para colocar novamente o nome pdf");
                         numlinha = PegarNrArquivo.getList(numlinha);
                         numlinha.removeAll(numlinha);
@@ -172,6 +169,8 @@ public class Imprimir extends BasePage {
                         Thread.sleep(2000);
 
                     }
+ */
+
 
 
                 }

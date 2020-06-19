@@ -4,29 +4,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.sikuli.script.Key;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
-import supporte.BasePage;
+import supporte.Variaveis;
 import supporte.GerenciaErro;
-import supporte.LerArquivo;
+import supporte.LerArquivoObjetos;
 
 import java.io.IOException;
+import java.util.List;
 
-public class DadosVeiculo extends BasePage {
+public class DadosVeiculo extends Variaveis {
     public DadosVeiculo(WebDriver navegador) {
         super(navegador);
     }
 
-    public DadosVeiculo AnoFabriModeloZeroKM() throws InterruptedException, IOException {
+    public DadosVeiculo AnoFabriModeloZeroKM(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
-                list = LerArquivo.getList(list);
-                ano_modelo = list.get(9);
-                suhaiveic = list.get(12);
+                ano_modelo = lista.get(0).getAno_modelo();
+                suhaiveic = lista.get(0).getSuhaiveic();
 
-                if(suhaiveic.contains("XMAX 250 ABS")){
+
+                if (suhaiveic.contains("XMAX 250 ABS")) {
                     ano_modelo = "2021";
                 }
 
@@ -50,13 +50,13 @@ public class DadosVeiculo extends BasePage {
         return this;
     }
 
-    public DadosVeiculo MarcaModeloVeicUtiliz() throws InterruptedException, IOException {
+    public DadosVeiculo MarcaModeloVeicUtiliz(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
-                list = LerArquivo.getList(list);
-                suhaimarca = list.get(11);
-                suhaiveic = list.get(12);
+                suhaimarca = lista.get(0).getSuhaimarca();
+                suhaiveic = lista.get(0).getSuhaiveic();
+                utiliz = lista.get(0).getUtiliz();
                 if (suhaimarca.contains("HD")) {
                     suhaimarca = "HONDA";
                 }
@@ -88,7 +88,6 @@ public class DadosVeiculo extends BasePage {
                     suhaiveic = "FAT BOY";
                 }
 
-                utiliz = list.get(20);
                 Thread.sleep(1000);
                 //apaga campo marca suhai
                 navegador.findElement(By.xpath("//div[@class=\" inner-addon right-addon\"]//input[@name=\"tMarca\"]")).clear();
@@ -133,14 +132,13 @@ public class DadosVeiculo extends BasePage {
         return this;
     }
 
-    public DadosVeiculo TipoSeguro() throws InterruptedException, IOException {
+    public DadosVeiculo TipoSeguro(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
-                list = LerArquivo.getList(list);
-                tipo_de_se = list.get(6);
-                classe_bon = list.get(7);
-                zero = list.get(10);
+                tipo_de_se = lista.get(0).getTipo_de_se();
+                classe_bon = lista.get(0).getClasse_bon();
+                zero = lista.get(0).getZero();
 
 
                 Thread.sleep(1000);
@@ -175,13 +173,13 @@ public class DadosVeiculo extends BasePage {
         return this;
     }
 
-    public Corpo_suhai InserirCepeComissao() throws InterruptedException, IOException {
+    public Corpo_suhai InserirCepeComissao(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
-            try {
-                list = LerArquivo.getList(list);
-                cep = list.get(2);
-                comissao = list.get(19);
+         //   try {
+                cepper = lista.get(0).getCepper();
+                comissao = lista.get(0).getComissao();
+
                 //preenche comissao
                 navegador.findElement(By.xpath("//div[@ng-class=\"{'has-error' : form.tFatorComissao.$invalid && form.$submitted}\"]//select[@name=\"tFatorComissao\"]")).click();
                 Thread.sleep(500);
@@ -194,7 +192,7 @@ public class DadosVeiculo extends BasePage {
                 Thread.sleep(1000);
                 navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.itens[calculo.nr_Item - 1].nr_CepPernoite\"]")).clear();
                 Thread.sleep(500);
-                navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.itens[calculo.nr_Item - 1].nr_CepPernoite\"]")).sendKeys(cep);
+                navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.itens[calculo.nr_Item - 1].nr_CepPernoite\"]")).sendKeys(cepper);
                 Thread.sleep(500);
                 navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.itens[calculo.nr_Item - 1].nr_CepPernoite\"]")).sendKeys(Keys.TAB);
                 Thread.sleep(1000);
@@ -207,9 +205,9 @@ public class DadosVeiculo extends BasePage {
                 } catch (Exception e) {
 
                 }
-            } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
-            }
+         //   } catch (Exception e) {
+          //      criaarquivoerro = GerenciaErro.CriarArquivoErro();
+         //   }
         }
         return new Corpo_suhai(navegador);
     }

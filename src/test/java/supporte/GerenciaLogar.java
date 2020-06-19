@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class GerenciaLogar extends BasePage {
+public class GerenciaLogar extends Variaveis {
     public GerenciaLogar(WebDriver navegador) {
         super(navegador);
     }

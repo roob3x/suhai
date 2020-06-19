@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class GerenciaErro extends BasePage{
+public class GerenciaErro extends Variaveis {
     public GerenciaErro(WebDriver navegador) {
         super(navegador);
     }

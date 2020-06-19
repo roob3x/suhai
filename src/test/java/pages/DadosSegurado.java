@@ -4,27 +4,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import supporte.BasePage;
-import supporte.LerArquivo;
+import supporte.Variaveis;
+import supporte.LerArquivoObjetos;
 import supporte.PegarNrCotacao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
-public class DadosSegurado extends BasePage {
+public class DadosSegurado extends Variaveis {
 
 
     public DadosSegurado(WebDriver navegador) {
         super(navegador);
     }
 
-    public DadosSegurado DigitaCpfNome() throws IOException, InterruptedException {
+    public DadosSegurado DigitaCpfNome(List<Variaveis> lista) throws IOException, InterruptedException {
         WebDriverWait wait = new WebDriverWait(navegador, 10);
-        list = LerArquivo.getList(list);
-        cpf = list.get(1);
-        nome = list.get(0);
+        cpf = lista.get(0).getCpf();
+        nome = lista.get(0).getNome();
         Thread.sleep(1000);
         try {
             String originalWindow = navegador.getWindowHandle();
@@ -53,12 +53,12 @@ public class DadosSegurado extends BasePage {
         return this;
     }
 
-    public Corpo_suhai PreencheDadosSegurado() throws IOException, InterruptedException {
+    public Corpo_suhai PreencheDadosSegurado(List<Variaveis>lista) throws IOException, InterruptedException {
         WebDriverWait wait = new WebDriverWait(navegador, 10);
 
         existenrcotacao = PegarNrCotacao.VerificaCotacao();
         if (existenrcotacao == false) {
-            DigitaCpfNome();
+            DigitaCpfNome(lista);
 
         } else {
             Scanner ler = new Scanner("/home/robertinho/suhai_perfil/cotacao/nrcotacao.TXT");

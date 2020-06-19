@@ -1,9 +1,9 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import supporte.BasePage;
+import supporte.Variaveis;
 
-public class Corpo_suhai extends BasePage {
+public class Corpo_suhai extends Variaveis {
     public Corpo_suhai(WebDriver navegador) {
         super(navegador);
     }

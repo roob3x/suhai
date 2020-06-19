@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import supporte.*;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class LoginForPage extends BasePage {
+public class LoginForPage extends Variaveis {
     public LoginForPage(WebDriver navegador) {
         super(navegador);
     }
@@ -42,7 +42,7 @@ public class LoginForPage extends BasePage {
         return this;
     }
 
-    public LoginForPage Cosulta() throws IOException, InterruptedException {
+    public LoginForPage Cosulta(List<Variaveis> lista) throws IOException, InterruptedException {
         existerro = GerenciaErro.VerificaErro();
         if(existerro == false) {
 
@@ -80,9 +80,9 @@ public class LoginForPage extends BasePage {
 
                 existenrcotacao = PegarNrCotacao.VerificaCotacao();
                 if (existenrcotacao == false) {
-                    list = LerArquivo.getList(list);
-                    cpf = list.get(1);
-                    nome = list.get(0);
+                    cpf = lista.get(0).getCpf();
+                    nome = lista.get(0).getNome();
+
                     Thread.sleep(1000);
                     try {
                         String originalWindow = navegador.getWindowHandle();
@@ -138,7 +138,7 @@ public class LoginForPage extends BasePage {
     }
 
 
-    public LoginForPage LogarSite() throws IOException, InterruptedException {
+    public LoginForPage LogarSite(List<Variaveis> lista) throws IOException, InterruptedException {
         deletararqlogar = GerenciaLogar.DeletarArquivoLogar();
         existerro = GerenciaErro.VerificaErro();
         if(existerro == false) {
@@ -148,7 +148,7 @@ public class LoginForPage extends BasePage {
                 setLogin()
                         .setPassword()
                         .clickLogar()
-                        .Cosulta();
+                        .Cosulta(lista);
             }
             catch (Exception e){
                 criaarquivoerro = GerenciaErro.CriarArquivoErro();
