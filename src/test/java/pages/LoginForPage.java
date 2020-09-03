@@ -21,9 +21,16 @@ public class LoginForPage extends Variaveis {
     public LoginForPage setLogin() throws IOException {
         existerro = GerenciaErro.VerificaErro();
         if(existerro == false) {
+            elementoxpath = "//div[@id=\"Login\"]//div[@class=\"form-group\"]//input[@name=\"emailUser\"]";
+            navegador.findElement(By.xpath(elementoxpath)).sendKeys("suhai0046450");
+            //GerenciaElemento gerenciaelemento = new GerenciaElemento(navegador);
+          // elemento =  gerenciaelemento.elementoxPath(elementoxpath);
+         //  elemento.sendKeys("suhai0046450");
+
+
        //     try {
 
-                navegador.findElement(By.xpath("//div[@id=\"Login\"]//div[@class=\"form-group\"]//input[@name=\"emailUser\"]")).sendKeys("suhai0046450");
+               // navegador.findElement(By.xpath("//div[@id=\"Login\"]//div[@class=\"form-group\"]//input[@name=\"emailUser\"]")).sendKeys("suhai0046450");
       //      }
      //       catch (Exception e){
         //        criaarquivoerro = GerenciaErro.CriarArquivoErro();
@@ -139,7 +146,7 @@ public class LoginForPage extends Variaveis {
 
 
     public LoginForPage LogarSite(List<Variaveis> lista) throws IOException, InterruptedException {
-        deletararqlogar = GerenciaLogar.DeletarArquivoLogar();
+        deletararqlogar = GerenciaLogar.deletarArquivoLogar();
         existerro = GerenciaErro.VerificaErro();
         if(existerro == false) {
 

@@ -1,6 +1,7 @@
 package supporte;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 
@@ -80,6 +81,8 @@ public class Variaveis {
     protected static List<String> nmpdf = new ArrayList<String>();
     protected  File deletarerro;
     protected String nomepc="robertinho";
+    protected WebElement elemento;
+    protected String elementoxpath;
 
 
     public Variaveis(WebDriver navegador) {
@@ -97,7 +100,7 @@ public class Variaveis {
                      String cpfcond, String nomecond, String datacond, String sexo_condu, String estado_civ, String nrlinha
             , String is, PrintWriter criaarquivoerro, boolean existerro, String tipopessoa, String suhaimarca, String suhaiveic
     , boolean existenrcotacao, PrintWriter gravarArq, File deletararqlogar, File deletarerro,String nomepc,
-                     String dat_nasc_c) {
+                     String dat_nasc_c,String elementoxpath,WebElement elemento) {
         this.navegador = navegador;
         this.url = url;
         this.session_id = session_id;
@@ -154,6 +157,8 @@ public class Variaveis {
         this.deletarerro = deletarerro;
         this.nomepc = nomepc;
         this.dat_nasc_c = dat_nasc_c;
+        this.elementoxpath = elementoxpath;
+        this.elemento = elemento;
 
 
     }

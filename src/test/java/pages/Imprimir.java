@@ -23,20 +23,21 @@ public class Imprimir extends Variaveis {
         super(navegador);
     }
 
-    public Imprimir Calcular() throws InterruptedException, IOException {
+    public Imprimir calcular() throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
                 Thread.sleep(1000);
                 navegador.findElement(By.id("btnCalcular")).click();
             } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
             }
         }
         return this;
     }
 
-    public Imprimir ClicaImprimir(List<Variaveis>lista) throws InterruptedException, FindFailed, IOException {
+    public Imprimir clicaImprimir(List<Variaveis> lista) throws InterruptedException, FindFailed, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
@@ -99,7 +100,7 @@ public class Imprimir extends Variaveis {
                 Thread.sleep(1000);
                 screen.click(salvarpdf);
 //cria arquivo txt para validar se o arquivo calculou
-                FileWriter arq = new FileWriter("/home/robertinho/suhai_perfil/txt/" +nrlinha);
+                FileWriter arq = new FileWriter("/home/robertinho/suhai_perfil/txt/" + nrlinha);
                 PrintWriter gravarArq = new PrintWriter(arq);
                 gravarArq.flush();
                 gravarArq.close();
@@ -125,13 +126,14 @@ public class Imprimir extends Variaveis {
                 }
 
             } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
             }
         }
         return this;
     }
 
-    public Imprimir VerificaSeCalculou(List<Variaveis>lista) throws IOException, InterruptedException {
+    public Imprimir verificaSeCalculou(List<Variaveis> lista) throws IOException, InterruptedException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
@@ -140,7 +142,7 @@ public class Imprimir extends Variaveis {
                 ArrayList<String> listaNr = nrlinha1.carregarArquivos();
                 nrlinha = listaNr.get(0);
                 File filearquivo = new File("/home/robertinho/suhai_perfil/arquivos/" + nrlinha);
-                File filetxt = new File("/home/robertinho/suhai_perfil/txt/" +nrlinha);
+                File filetxt = new File("/home/robertinho/suhai_perfil/txt/" + nrlinha);
                 if (filetxt.exists() && filetxt.isFile()) {
                     //           System.out.println("arquivo processado");
                     if (filetxt.exists() && filetxt.isFile()) {
@@ -155,33 +157,32 @@ public class Imprimir extends Variaveis {
                     }
 
 
-
                     //System.out.println(nrlinha);
 /**
-                    if (numlinha.contains(getNome())) {
-                        //System.out.println("contem nome no nrlinha vou tentar tratar");
-                        numlinha.removeAll(numlinha);
-                        setNrlinha(null);
-                        //System.out.println("entrei para colocar novamente o nome pdf");
-                        numlinha = PegarNrArquivo.getList(numlinha);
-                        numlinha.removeAll(numlinha);
-                        numlinha.indexOf(numlinha);
-                        Thread.sleep(2000);
+ if (numlinha.contains(getNome())) {
+ //System.out.println("contem nome no nrlinha vou tentar tratar");
+ numlinha.removeAll(numlinha);
+ setNrlinha(null);
+ //System.out.println("entrei para colocar novamente o nome pdf");
+ numlinha = PegarNrArquivo.getList(numlinha);
+ numlinha.removeAll(numlinha);
+ numlinha.indexOf(numlinha);
+ Thread.sleep(2000);
 
-                    }
+ }
  */
-
 
 
                 }
             } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
             }
         }
         return this;
     }
 
-    public Imprimir PegarNrCotacao() throws IOException {
+    public Imprimir pegarNrCotacao() throws IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             existenrcotacao = GerenciaNrCotacao.VerificaCotacao();
@@ -197,7 +198,8 @@ public class Imprimir extends Variaveis {
                     gravarArq.flush();
                     gravarArq.close();
                 } catch (Exception e) {
-                    criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                    e.printStackTrace();
+                    GerenciaErro.CriarArquivoErro();
                 }
             }
 
@@ -206,10 +208,10 @@ public class Imprimir extends Variaveis {
         return this;
     }
 
-    public Corpo_suhai VerificaRelogar() throws IOException {
+    public Corpo_suhai verificaRelogar() throws IOException {
         File fileerro = new File("/home/robertinho/suhai_perfil/status/erro.txt");
         if (fileerro.exists() && fileerro.isFile()) {
-            gravarArq = GerenciaLogar.CriarArquivoLogar();
+            gravarArq = GerenciaLogar.criarArquivoLogar();
             fileerro.delete();
             navegador.get("http://suhaiseguradoracotacao.com.br/login");
         }

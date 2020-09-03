@@ -17,56 +17,56 @@ public class DadosProponente extends Variaveis {
         super(navegador);
     }
 
-    public DadosProponente TipoPessoa(List<Variaveis> lista) throws IOException {
+    public DadosProponente tipoPessoa(List<Variaveis> lista) throws IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
-             try {
-            WebDriverWait wait = new WebDriverWait(navegador, 10);
-            tipopessoa = lista.get(0).getTipopessoa();
+            try {
+                WebDriverWait wait = new WebDriverWait(navegador, 10);
+                tipopessoa = lista.get(0).getTipopessoa();
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@ng-change=\"changeTipoPessoa();LimpaValorPremio()\"]")));
-            //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//selet[@ng-change=\"changeTipoPessoa();LimpaValorPremio()\"]")));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@ng-change=\"changeTipoPessoa();LimpaValorPremio()\"]")));
+                // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//selet[@ng-change=\"changeTipoPessoa();LimpaValorPremio()\"]")));
 
-
-            navegador.findElement(By.xpath("//select[@ng-change=\"changeTipoPessoa();LimpaValorPremio()\"]")).sendKeys(tipopessoa);
-             }
-                  catch (Exception e){
-             criaarquivoerro = GerenciaErro.CriarArquivoErro();
-              }
+                navegador.findElement(By.xpath("//select[@ng-change=\"changeTipoPessoa();LimpaValorPremio()\"]")).sendKeys(tipopessoa);
+            } catch (Exception e) {
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
+            }
         }
         return this;
     }
 
-    public DadosProponente PreencheNomeCpfProponente(List<Variaveis> lista) throws IOException, InterruptedException {
+    public DadosProponente preencheNomeCpfProponente(List<Variaveis> lista) throws IOException, InterruptedException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
-              try {
-            WebDriverWait wait = new WebDriverWait(navegador, 10);
-            cpf = lista.get(0).getCpf();
-            nome = lista.get(0).getNome();
+            try {
+                WebDriverWait wait = new WebDriverWait(navegador, 10);
+                cpf = lista.get(0).getCpf();
+                nome = lista.get(0).getNome();
 
-            //preenche cpf
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")));
-            Thread.sleep(1000);
-            navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")).clear();
-            Thread.sleep(500);
-            navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")).sendKeys(cpf);
-            Thread.sleep(500);
-            navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")).sendKeys(Keys.TAB);
-            Thread.sleep(1000);
-            //preenche nome
-            navegador.findElement(By.xpath("//div[@class=\"col-sm-4 col-md-4 col-lg-4\"]//input[@ng-model=\"calculo.proponente.ds_Nome\"]")).clear();
-            Thread.sleep(500);
-            navegador.findElement(By.xpath("//div[@class=\"col-sm-4 col-md-4 col-lg-4\"]//input[@ng-model=\"calculo.proponente.ds_Nome\"]")).sendKeys(nome);
-              } catch (Exception e) {
-                  criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                //preenche cpf
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")));
+                Thread.sleep(1000);
+                navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")).clear();
+                Thread.sleep(500);
+                navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")).sendKeys(cpf);
+                Thread.sleep(500);
+                navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//input[@ng-model=\"calculo.proponente.nr_Cpf\"]")).sendKeys(Keys.TAB);
+                Thread.sleep(1000);
+                //preenche nome
+                navegador.findElement(By.xpath("//div[@class=\"col-sm-4 col-md-4 col-lg-4\"]//input[@ng-model=\"calculo.proponente.ds_Nome\"]")).clear();
+                Thread.sleep(500);
+                navegador.findElement(By.xpath("//div[@class=\"col-sm-4 col-md-4 col-lg-4\"]//input[@ng-model=\"calculo.proponente.ds_Nome\"]")).sendKeys(nome);
+            } catch (Exception e) {
+                e.printStackTrace();
+                criaarquivoerro = GerenciaErro.CriarArquivoErro();
 
-               }
+            }
         }
         return this;
     }
 
-    public Corpo_suhai PreencheSexoDatNascEstCivil(List<Variaveis> lista) throws IOException, InterruptedException {
+    public Corpo_suhai preencheSexoDatNascEstCivil(List<Variaveis> lista) throws IOException, InterruptedException {
 
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
@@ -101,6 +101,7 @@ public class DadosProponente extends Variaveis {
                 navegador.findElement(By.xpath("//div[@class=\"col-sm-2 col-md-2 col-lg-2\"]//select[@name=\"tEstadoCivil\"]")).sendKeys(Keys.TAB);
 
             } catch (Exception e) {
+                e.printStackTrace();
                 criaarquivoerro = GerenciaErro.CriarArquivoErro();
 
             }

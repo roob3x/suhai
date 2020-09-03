@@ -18,7 +18,7 @@ public class DadosVeiculo extends Variaveis {
         super(navegador);
     }
 
-    public DadosVeiculo AnoFabriModeloZeroKM(List<Variaveis> lista) throws InterruptedException, IOException {
+    public DadosVeiculo anoFabriModeloZeroKM(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
@@ -43,14 +43,15 @@ public class DadosVeiculo extends Variaveis {
                 Thread.sleep(1000);
 
             } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
             }
         }
 
         return this;
     }
 
-    public DadosVeiculo MarcaModeloVeicUtiliz(List<Variaveis> lista) throws InterruptedException, IOException {
+    public DadosVeiculo marcaModeloVeicUtiliz(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
@@ -126,13 +127,14 @@ public class DadosVeiculo extends Variaveis {
                 navegador.findElement(By.xpath("//div[@ng-class=\"{'has-error' : form.tUtilizacao.$invalid && form.$submitted}\"]//select[@name=\"tUtilizacao\"]")).sendKeys(Keys.TAB);
 
             } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
             }
         }
         return this;
     }
 
-    public DadosVeiculo TipoSeguro(List<Variaveis> lista) throws InterruptedException, IOException {
+    public DadosVeiculo tipoSeguro(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
             try {
@@ -166,17 +168,18 @@ public class DadosVeiculo extends Variaveis {
 
                 }
             } catch (Exception e) {
-                criaarquivoerro = GerenciaErro.CriarArquivoErro();
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
 
             }
         }
         return this;
     }
 
-    public Corpo_suhai InserirCepeComissao(List<Variaveis> lista) throws InterruptedException, IOException {
+    public Corpo_suhai inserirCepeComissao(List<Variaveis> lista) throws InterruptedException, IOException {
         existerro = GerenciaErro.VerificaErro();
         if (existerro == false) {
-         //   try {
+            try {
                 cepper = lista.get(0).getCepper();
                 comissao = lista.get(0).getComissao();
 
@@ -205,9 +208,10 @@ public class DadosVeiculo extends Variaveis {
                 } catch (Exception e) {
 
                 }
-         //   } catch (Exception e) {
-          //      criaarquivoerro = GerenciaErro.CriarArquivoErro();
-         //   }
+            } catch (Exception e) {
+                e.printStackTrace();
+                GerenciaErro.CriarArquivoErro();
+            }
         }
         return new Corpo_suhai(navegador);
     }

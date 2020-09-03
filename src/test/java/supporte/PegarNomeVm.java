@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class PegarNomeVm {
-    public static PrintWriter CriarNomeVM() throws IOException {
+    public static PrintWriter criarNomeVM() throws IOException {
         FileWriter arq = new FileWriter("/home/robertinho/ferramentas/mover/NomeVm.txt");
         String hostname = "Unknown";
 
@@ -28,7 +28,7 @@ public class PegarNomeVm {
         return gravararq;
 
     }
-    public static String NomeVm(String nomevm) throws IOException {
+    public static String nomeVm(String nomevm) throws IOException {
         Scanner ler = new Scanner("/home/robertinho/ferramentas/mover/NomeVm.txt");
         String nome1 = ler.nextLine();
         FileReader arq = new FileReader(nome1);

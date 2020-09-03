@@ -7,19 +7,23 @@ public class Corpo_suhai extends Variaveis {
     public Corpo_suhai(WebDriver navegador) {
         super(navegador);
     }
-    public DadosSegurado MetodosDadosSegurado(){
+    public DadosSegurado metodosDadosSegurado(){
+
         return new DadosSegurado(navegador);
     }
-    public DadosProponente MetodoDadosProponente(){
+    public DadosProponente metodoDadosProponente(){
+
         return new DadosProponente(navegador);
     }
-    public DadosVeiculo MetodoDadosVeiculo(){
+    public DadosVeiculo metodoDadosVeiculo(){
+
         return new DadosVeiculo(navegador);
     }
-    public PerguntaQuestionario MetodoPerguntaQuestionario(){
+    public PerguntaQuestionario metodoPerguntaQuestionario(){
         return new PerguntaQuestionario(navegador);
     }
-    public Imprimir MetodoImprimir(){
+    public Imprimir metodoImprimir(){
+
         return new Imprimir(navegador);
     }
 }
