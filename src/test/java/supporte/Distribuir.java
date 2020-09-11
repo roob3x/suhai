@@ -43,7 +43,7 @@ public class Distribuir {
         gravarArq = PegarNomeVm.criarNomeVM();
         //ler o nome da vm
         nomevm = PegarNomeVm.nomeVm(nomevm);
-        // caminho de onde ira pegar os arquivos
+        /// caminho de onde ira pegar os arquivos
         File diretorio = new File("/run/user/1000/gvfs/smb-share:server=freenas.local,share=arquivosgerais/E/LABSEG/apolice/result/SUHAI/PRONTOS/distribuir/" + nomevm + "/");
         File destino = new File("/home/robertinho/suhai_perfil/arquivos/");
 //distribui os arquivos para a vm
