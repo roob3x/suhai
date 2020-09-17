@@ -10,7 +10,7 @@ public class Recolher {
 
     public void recolherArquivos() throws IOException {
         // caminhomoverarquivo = LerArquivosDiretorio.CaminhoRecolherArquivo(caminhomoverarquivo);
-        Scanner ler = new Scanner("/home/robertinho/ferramentas/mover/suhai_perfil/CaminhoMoverArquivo.txt");
+        Scanner ler = new Scanner("/home/robertinho/ferramentas/mover/recolher.txt");
         String nome1 = ler.nextLine();
         FileReader arq = new FileReader(nome1);
         BufferedReader LerArquivo = new BufferedReader(arq);
