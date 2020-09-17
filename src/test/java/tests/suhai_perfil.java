@@ -23,7 +23,6 @@ public class suhai_perfil {
     private static List<String> numlinha = new ArrayList<String>();
     private static List<String> list = new ArrayList<String>();
     private static List<String> nmpdf = new ArrayList<String>();
-
     private boolean existelogar;
 
 
