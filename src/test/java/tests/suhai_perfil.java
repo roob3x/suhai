@@ -30,7 +30,6 @@ public class suhai_perfil {
     public static void inicioDistribuir() throws IOException {
         Distribuir distribuir = new Distribuir();
         distribuir.distribuirArquivos();
-
     }
 
     @Before
